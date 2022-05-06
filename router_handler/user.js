@@ -1,6 +1,8 @@
 const { send } = require('express/lib/response')
 const db = require('../db')
 
+const bcrypt = require('bcryptjs')
+
 // 注册新用户的处理函数
 exports.register = (req, res) => {
 	// 获取客户端提交到服务器的用户信息
@@ -22,6 +24,9 @@ exports.register = (req, res) => {
 		if (result.length > 0) {
 			return res.send({ status: 1, msg: '用户名被占用，请更换其它用户名！' })
 		}
+		// 对密码进行加密
+		userinfo.password = bcrypt.hashSync(userinfo.password, 10)
+		// console.log(userinfo)
 
 		return res.send('register successfully!')
 	})
