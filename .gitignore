@@ -1,1 +1,8 @@
+<<<<<<< HEAD
 node_modules/
+=======
+node_modules/
+dist/
+.idea
+.vscode
+>>>>>>> 159d8d409f2b6f2b023aaad9a7461547da3dda56
