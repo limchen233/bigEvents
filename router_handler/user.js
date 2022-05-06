@@ -9,7 +9,8 @@ exports.register = (req, res) => {
 
 	// 对表单中的数据进行验证
 	if (!userinfo.username || !userinfo.password) {
-		return res.send({ status: 1, msg: '用户名或密码不能为空！' })
+		// return res.send({ status: 1, msg: '用户名或密码不能为空！' })
+		return res.cc('用户名或密码不能为空！')
 	}
 
 	// 定义sql语句，查询用户名
