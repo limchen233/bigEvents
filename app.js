@@ -1,6 +1,10 @@
 // 引入express
 const express = require('express')
 
+// 导入定义验证规则的包
+// const joi = require('@hapi/joi') // 此包已弃用
+const joi = require('joi')
+
 // 创建express实例
 const app = express()
 
@@ -28,6 +32,14 @@ app.use(function (req, res, next) {
 // 导入并注册用户路由模块
 const userRouter = require('./router/user')
 app.use('/api', userRouter)
+
+// 定义错误级别的中间件
+app.use((err, req, res, next) => {
+	// 验证失败导致的错误
+	if (err instanceof joi.ValidationError) return res.cc(err)
+	// 其它类型的错误
+	res.cc(err)
+})
 
 // 启动服务器
 app.listen(3007, () => {
