@@ -11,7 +11,7 @@ app.use(cors())
 // 配置解析表单数据的中间件(此中间件只能解析'application/x-www-form-urlencoded'格式的表单)
 app.use(express.urlencoded({ extended: false }))
 
-// 封装响应数据的中间件
+// 封装响应数据的中间件(路由模块之前配置)
 app.use(function (req, res, next) {
 	// status = 0 为成功； status = 1 为失败； 默认将 status 的值设置为 1，方便处理失败的情况
 	res.cc = function (err, status = 1) {
