@@ -18,8 +18,10 @@ const { reg_login_schema } = require('../schema/user')
 */
 router.post('/register', expressJoi(reg_login_schema), user_handler.register)
 
-// 登录
-router.post('/login', user_handler.login)
+/* 使用验证规则
+   验证登录
+*/
+router.post('/login', expressJoi(reg_login_schema), user_handler.login)
 
 // 将路由对象共享出去
 module.exports = router
