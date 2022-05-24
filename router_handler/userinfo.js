@@ -22,3 +22,6 @@ exports.getUserInfo = (req, res) => {
 		})
 	})
 }
+
+// 更新用户信息的处理函数
+exports.updateUserInfo = (req, res) => {}
