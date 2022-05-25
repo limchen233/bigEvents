@@ -17,10 +17,11 @@ const password = joi
 	.pattern(/^[\S]{3,12}$/)
 	.required()
 
-/* 定义id，nickname，email的验证规则 */
+/* 定义验证规则 */
 const id = joi.number().integer().min(1).required()
 const nickname = joi.string().required()
 const email = joi.string().email().required()
+const avatar = joi.string().dataUri().required() // dataUri() base64字符串
 
 /* 定义验证注册和登录表单数据的规则对象 */
 exports.reg_login_schema = {
@@ -52,5 +53,12 @@ exports.update_password_schema = {
 		// 2. joi.not(joi.ref('oldPwd')) 表示 newPwd 的值不能等于 oldPwd 的值
 		// 3. .concat() 用于合并 joi.not(joi.ref('oldPwd')) 和 password 这两条验证规则
 		newPwd: joi.not(joi.ref('oldPwd')).concat(password)
+	}
+}
+
+// 验证规则对象 - 更新用户头像
+exports.update_avatar_schema = {
+	body: {
+		avatar
 	}
 }
