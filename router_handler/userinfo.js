@@ -24,4 +24,19 @@ exports.getUserInfo = (req, res) => {
 }
 
 // 更新用户信息的处理函数
-exports.updateUserInfo = (req, res) => {}
+exports.updateUserInfo = (req, res) => {
+	// 定义sql语句
+	const sql = 'update ev_users set ? where id=?'
+
+	// 执行sql
+	db.query(sql, [req.body, req.body.id], (err, result) => {
+		// 执行sql语句失败
+		if (err) return res.cc(err)
+
+		// sql执行成功，但影响行数不等于1
+		if (result.affectedRows !== 1) return res.cc('更新用户信息失败！')
+
+		// 成功
+		res.cc('更新用户信息成功', 0)
+	})
+}

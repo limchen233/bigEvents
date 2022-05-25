@@ -64,6 +64,7 @@ exports.login = (req, res) => {
 
 	// 定义sql语句
 	const sql = 'select * from ev_users where username = ?'
+	console.log('hello')
 
 	// 执行sql语句
 	db.query(sql, userinfo.username, (err, result) => {
