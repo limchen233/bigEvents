@@ -64,7 +64,6 @@ exports.login = (req, res) => {
 
 	// 定义sql语句
 	const sql = 'select * from ev_users where username = ?'
-	console.log('hello')
 
 	// 执行sql语句
 	db.query(sql, userinfo.username, (err, result) => {
@@ -91,6 +90,5 @@ exports.login = (req, res) => {
 			// 为了方便客户端使用 Token，在服务器端直接拼接上 Bearer 的前缀
 			token: 'Bearer ' + tokenStr
 		})
-		res.send('login ok')
 	})
 }
