@@ -101,6 +101,13 @@ exports.updateCateById = (req, res) => {
 		if (result.length === 1 && result[0].alias === req.body.alias) return res.cc('分类别名被占用，请更换后重试！')
 
 		// 名称和别名都可用，更新成功
-		res.cc('更新成功', 0)
+		// 执行更新文章分类的sql
+		const sql = 'update ev_article_cate set ? where id=?'
+		db.query(sql, [req.body, req.body.id], (err, result) => {
+			if (err) return res.cc(err)
+			if (result.affectedRows !== 1) return res.cc('更新文章分类失败！')
+
+			res.cc('更新成功', 0)
+		})
 	})
 }
