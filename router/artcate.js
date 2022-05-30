@@ -12,4 +12,7 @@ const artcate_handler = require('../router_handler/artcate')
 
 router.get('/cates', artcate_handler.getArtCate)
 
+// 新增文章分类的路由
+router.post('/addcates', artcate_handler.addArticleCates)
+
 module.exports = router
