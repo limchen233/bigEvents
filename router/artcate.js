@@ -9,7 +9,7 @@ const artcate_handler = require('../router_handler/artcate')
 const expressJoi = require('@escook/express-joi')
 
 // 导入需要的验证规则对象
-const { add_cate_schema, delete_cate_schema, get_cate_schema } = require('../schema/artcate')
+const { add_cate_schema, delete_cate_schema, get_cate_schema, update_cate_schema } = require('../schema/artcate')
 
 // 获取文章分类列表数据和路由
 /* router.get('/cates', (req, res) => {
@@ -28,6 +28,6 @@ router.get('/deletecate/:id', expressJoi(delete_cate_schema), artcate_handler.de
 router.get('/cates/:id', expressJoi(get_cate_schema), artcate_handler.getArtCateById)
 
 // 根据id更新文章分类
-router.post('/updatecate', artcate_handler.updateCateById)
+router.post('/updatecate', expressJoi(update_cate_schema), artcate_handler.updateCateById)
 
 module.exports = router

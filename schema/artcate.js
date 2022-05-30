@@ -29,3 +29,12 @@ exports.get_cate_schema = {
 		id
 	}
 }
+
+// 验证规则对象--更新分类
+exports.update_cate_schema = {
+	body: {
+		id,
+		name,
+		alias
+	}
+}
