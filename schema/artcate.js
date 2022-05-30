@@ -22,3 +22,10 @@ exports.delete_cate_schema = {
 		id
 	}
 }
+
+// 验证规则对象--查询分类详情
+exports.get_cate_schema = {
+	params: {
+		id
+	}
+}

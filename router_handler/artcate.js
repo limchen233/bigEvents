@@ -53,5 +53,33 @@ exports.addArticleCates = (req, res) => {
 
 // 删除文章分类的处理函数
 exports.deleteCateById = (req, res) => {
-	res.send('删除成功')
+	// 定义sql
+	const sql = 'update ev_article_cate set is_delete=1 where id=?'
+
+	db.query(sql, req.params.id, (err, result) => {
+		if (err) return res.cc(err)
+
+		if (result.affectedRows !== 1) return res.cc('删除文章分类失败！')
+
+		res.cc('删除文章分类成功！', 0)
+	})
+}
+
+// 根据id获取文章分类详情
+exports.getArtCateById = (req, res) => {
+	// 定义sql
+	const sql = 'select * from ev_article_cate where id=?'
+
+	db.query(sql, req.params.id, (err, result) => {
+		if (err) return res.cc(err)
+
+		if (result.length !== 1) return res.cc('查询文章分类详情失败！')
+
+		// 成功
+		res.send({
+			status: 0,
+			message: '查询文章分类成功！',
+			data: result[0]
+		})
+	})
 }
