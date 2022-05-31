@@ -52,6 +52,9 @@ app.use('/my/article', artCateRouter)
 const articleRouter = require('./router/article')
 app.use('/my/article', articleRouter)
 
+// 托管静态资源文件
+app.use('/uploads', express.static('./uploads'))
+
 // 定义错误级别的中间件
 app.use((err, req, res, next) => {
 	// 验证失败导致的错误
